@@ -2,33 +2,43 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% include "./partials/head.html" ignore missing with context %}
-    <title>Home Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% include "./partials/head.html" ignore missing with context %}
+  <title>Home Page</title>
 </head>
 
 <body>
-    <!-- include navbar from partials -->
-    {% include "./partials/nav.html" ignore missing with context %}
+  <!-- include navbar from partials -->
+  {% include "./partials/nav.html" ignore missing with context %}
 
-    <h1>Dynamic content examples - Week 4</h1>
+  <h1>Dynamic content examples - Week 4</h1>
+
+  <div class="m-5">
+    <h3>
+      </> htmx button example</h3>
+    <!-- have a button POST a click via AJAX -->
+    <button hx-post="/clicked" hx-swap="outerHTML" class="btn btn-primary">
+      Click Me
+    </button>
+  </div>
 
 
-    <div class="m-5 timeBlock">
-        <h3>Server Time:</h3>
-        <h4 id="serverTime">{{serverTime}}</h4>
-    </div>
+  <div class="m-5 timeBlock">
+    <h3>Server Time:</h3>
+    <h4 id="serverTime">{{serverTime}}</h4>
+    <h4 id="serverTime" hx-get="/serverTime" hx-trigger="every 1s">{{serverTime}}</h4>
+  </div>
 
-    <div class="m-5 timeBlock">
-        <h3>Browser Time:</h3>
-        <h4 id="browserTime"></h4>
-    </div>
+  <div class="m-5 timeBlock">
+    <h3>Browser Time:</h3>
+    <h4 id="browserTime"></h4>
+  </div>
 
-    <h5></h5>
-    <!-- Load common CSS and JS -->
-    {% include "./partials/dependencies.html" ignore missing with context %}
-    <script src="/static/js/browserTime.js"></script>
+  <h5></h5>
+  <!-- Load common CSS and JS -->
+  {% include "./partials/dependencies.html" ignore missing with context %}
+  <script src="/static/js/browserTime.js"></script>
 </body>
 
 </html>
